@@ -1,6 +1,7 @@
-# supervisor
-
+#!/bin/sh
 echo "Installing Supervisor"
+
+SHARED_DIR=$1
 
 if [ -f "$SHARED_DIR/config/envvars" ]; then
   . $SHARED_DIR/config/envvars

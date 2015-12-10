@@ -1,3 +1,4 @@
+#!/bin/sh
 echo "Installing Ouroboros"
 
 SHARED_DIR=$1
@@ -23,7 +24,7 @@ cd $OUROBOROS_HOME
 git clone https://github.com/WSUlib/ouroboros.git
 
 # install system dependencies
-apt-get -y install libxml2-dev libxslt1-dev python-dev
+apt-get -y install libxml2-dev libxslt1-dev python-dev python-pip
 
 # python modules
 pip install -r requirements.txt
@@ -33,6 +34,6 @@ pip install -r requirements.txt
 apt-get -y install redis-server
 
 # copy Ouroboros conf to supervisor dir, reread, update
-cp $SHARED_DIR/downloads/ouroboros/ouroboros-supervisor.conf /etc/supervisor/conf.d/ouroboros.conf
+cp $SHARED_DIR/config/ouroboros/ouroboros-supervisor.conf /etc/supervisor/conf.d/ouroboros.conf
 supervisorctl reread
 supervisorctl update # should start Ouroboros as well
