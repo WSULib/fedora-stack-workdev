@@ -23,5 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell", path: "./install_scripts/bootstrap.sh", args: shared_dir
   config.vm.provision "shell", path: "./install_scripts/supervisor.sh", args: shared_dir
   config.vm.provision "shell", path: "./install_scripts/ouroboros.sh", args: shared_dir
+  config.vm.provision "shell", path: "./install_scripts/lamp.sh", args: shared_dir
+  # config.vm.provision "shell", path: "./install_scripts/java.sh"
 
 end
