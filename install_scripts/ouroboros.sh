@@ -27,7 +27,7 @@ git clone https://github.com/WSUlib/ouroboros.git
 cd ouroboros
 
 # install system dependencies
-apt-get -y install libxml2-dev libxslt1-dev python-dev python-pip
+apt-get -y install libxml2-dev libxslt1-dev python-dev python-pip python-mysqldb
 
 # python modules
 pip install -r requirements.txt
@@ -36,7 +36,11 @@ pip install -r requirements.txt
 # redis
 apt-get -y install redis-server
 
-# copy Ouroboros conf to supervisor dir, reread, update
-cp $SHARED_DIR/config/ouroboros/ouroboros-supervisor.conf /etc/supervisor/conf.d/ouroboros.conf
+# copy ouroboros's localConfig
+cp $SHARED_DIR/downloads/ouroboros/localConfig.py /opt/ouroboros/localConfig.py
+
+# copy Ouroboros and Celery conf to supervisor dir, reread, update
+cp $SHARED_DIR/config/ouroboros/ouroboros.conf /etc/supervisor/conf.d/
+cp $SHARED_DIR/config/ouroboros/celery.conf /etc/supervisor/conf.d/
 supervisorctl reread
-supervisorctl update # should start Ouroboros as well
+supervisorctl update # will start Ouroboros as well
