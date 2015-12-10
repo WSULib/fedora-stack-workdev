@@ -10,15 +10,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = "ubuntu/trusty64"
 
-  config.vm.network :forwarded_port, guest: 80, host: 80
+  config.vm.network :forwarded_port, guest: 80, host: 8081
 
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = 3072
+    vb.memory = 2048
     vb.cpus = 2
   end
 
+  # sets shared dir that is passed to bootstrap
   shared_dir = "/vagrant"
 
   config.vm.provision "shell", path: "./install_scripts/bootstrap.sh", args: shared_dir
+  config.vm.provision "shell", path: "./install_scripts/supervisor.sh", args: shared_dir
+  config.vm.provision "shell", path: "./install_scripts/ouroboros.sh", args: shared_dir
 
 end

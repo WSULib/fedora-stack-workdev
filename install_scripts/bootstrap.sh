@@ -9,8 +9,8 @@ if [ -f "$SHARED_DIR/config/envvars" ]; then
   print "found your local envvars file. Using it."
 
 else
-  . $SHARED_DIR/config/envvars.template
-  print "found your template file. Using its default values."
+  . $SHARED_DIR/config/envvars.default
+  print "found your default file. Using its default values."
 
 fi
 
