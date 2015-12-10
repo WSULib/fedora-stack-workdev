@@ -10,10 +10,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = "ubuntu/trusty64"
 
-  config.vm.network :forwarded_port, guest: 80, host: 8081
+  config.vm.network :forwarded_port, guest: 80, host: 80
 
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = 2048
+    vb.memory = 3072
     vb.cpus = 2
   end
 
