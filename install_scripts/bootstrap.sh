@@ -4,12 +4,12 @@
 
 SHARED_DIR=$1
 
-if [ -f "$SHARED_DIR/config/_config" ]; then
-  . $SHARED_DIR/config/_config
-  print "found your already made _config file. Using it."
+if [ -f "$SHARED_DIR/config/envvars" ]; then
+  . $SHARED_DIR/config/envvars
+  print "found your local envvars file. Using it."
 
 else
-  . $SHARED_DIR/config/config
+  . $SHARED_DIR/config/envvars.template
   print "found your template file. Using its default values."
 
 fi
