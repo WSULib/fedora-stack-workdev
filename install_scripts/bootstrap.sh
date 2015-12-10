@@ -6,15 +6,13 @@ SHARED_DIR=$1
 
 if [ -f "$SHARED_DIR/config/envvars" ]; then
   . $SHARED_DIR/config/envvars
-  print "found your local envvars file. Using it."
+  printf "found your local envvars file. Using it."
 
 else
-  . $SHARED_DIR/config/envvars.template
-  print "found your template file. Using its default values."
+  . $SHARED_DIR/config/envvars.default
+  printf "found your template file. Using its default values."
 
 fi
-
-cd $HOME_DIR
 
 # Update
 apt-get -y update && apt-get -y upgrade

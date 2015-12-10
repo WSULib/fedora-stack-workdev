@@ -2,3 +2,4 @@
 #
 # Contain Environment variables for installs
 #
+SQL_PASSWORD = 'mybadpassword'
