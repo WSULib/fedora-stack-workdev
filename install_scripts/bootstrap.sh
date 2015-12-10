@@ -2,6 +2,7 @@
 # BASICS
 ###
 
+#### GET ENVARS #################################################
 SHARED_DIR=$1
 
 if [ -f "$SHARED_DIR/config/envvars" ]; then
@@ -10,9 +11,10 @@ if [ -f "$SHARED_DIR/config/envvars" ]; then
 
 else
   . $SHARED_DIR/config/envvars.default
-  printf "found your template file. Using its default values."
+  printf "found your default envvars file. Using its default values."
 
 fi
+#################################################################
 
 # Update
 apt-get -y update && apt-get -y upgrade

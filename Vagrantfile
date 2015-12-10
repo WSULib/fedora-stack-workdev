@@ -17,10 +17,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.cpus = 2
   end
 
-  shared_dir = "/vagrant"
+  # sets shared dir that is passed to bootstrap
+  shared_dir = "/vagrant"  
 
   config.vm.provision "shell", path: "./install_scripts/bootstrap.sh", args: shared_dir
+  config.vm.provision "shell", path: "./install_scripts/supervisor.sh", args: shared_dir
+  config.vm.provision "shell", path: "./install_scripts/ouroboros.sh", args: shared_dir
   config.vm.provision "shell", path: "./install_scripts/lamp.sh", args: shared_dir
-  #config.vm.provision "shell", path: "./install_scripts/java.sh"
+  # config.vm.provision "shell", path: "./install_scripts/java.sh"
 
 end
