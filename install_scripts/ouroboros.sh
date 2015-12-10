@@ -1,6 +1,7 @@
 #!/bin/sh
 echo "Installing Ouroboros"
 
+#### GET ENVARS #################################################
 SHARED_DIR=$1
 
 if [ -f "$SHARED_DIR/config/envvars" ]; then
@@ -8,10 +9,11 @@ if [ -f "$SHARED_DIR/config/envvars" ]; then
   print "found your local envvars file. Using it."
 
 else
-  . $SHARED_DIR/config/envvars.template
-  print "found your template file. Using its default values."
+  . $SHARED_DIR/config/envvars.default
+  print "found your default envvars file. Using its default values."
 
 fi
+#################################################################
 
 if [ ! -d $OUROBOROS_HOME ]; then
   mkdir $OUROBOROS_HOME

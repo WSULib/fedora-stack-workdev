@@ -2,6 +2,7 @@
 # BASICS
 ###
 
+#### GET ENVARS #################################################
 SHARED_DIR=$1
 
 if [ -f "$SHARED_DIR/config/envvars" ]; then
@@ -10,9 +11,10 @@ if [ -f "$SHARED_DIR/config/envvars" ]; then
 
 else
   . $SHARED_DIR/config/envvars.default
-  print "found your default file. Using its default values."
+  print "found your default envvars file. Using its default values."
 
 fi
+#################################################################
 
 cd $HOME_DIR
 
