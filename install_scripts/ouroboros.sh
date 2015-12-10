@@ -27,7 +27,7 @@ git clone https://github.com/WSUlib/ouroboros.git
 cd ouroboros
 
 # install system dependencies
-apt-get -y install libxml2-dev libxslt1-dev python-dev python-pip python-mysqldb
+apt-get -y install libxml2-dev libxslt1-dev python-dev python-pip python-mysqldb python-lxml
 
 # python modules
 pip install -r requirements.txt
