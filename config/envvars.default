@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# Contain Environment variables for installs
+#
+
+# Ouroboros
+OUROBOROS_HOME='/opt/ouroboros'
+
+# SQL
+SQL_PASSWORD = 'mybadpassword'
