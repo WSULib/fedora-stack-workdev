@@ -20,10 +20,11 @@ if [ ! -d $OUROBOROS_HOME ]; then
 fi
 
 # change to dir
-cd $OUROBOROS_HOME
+cd /opt
 
 # clone repository
 git clone https://github.com/WSUlib/ouroboros.git
+cd ouroboros
 
 # install system dependencies
 apt-get -y install libxml2-dev libxslt1-dev python-dev python-pip
