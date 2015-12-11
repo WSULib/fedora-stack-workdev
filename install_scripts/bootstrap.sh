@@ -32,3 +32,11 @@ apt-get -y install wget curl
 
 # other handy tools
 apt-get -y install htop tree
+
+# Create Users
+for user in "${USERS_ARRAY[@]}";
+do
+	echo "Creating user ${user%%:*}"
+	useradd -m -s /bin/bash ${user%%:*}
+	echo ${user%%:*}:${user#*:} | chpasswd
+done
