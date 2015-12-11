@@ -15,8 +15,8 @@ else
 fi
 
 # Set MySQL password
-sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password $SQL_PASSWORD'
-sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password $SQL_PASSWORD'
+sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $SQL_PASSWORD"
+sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $SQL_PASSWORD"
 
 # Install LAMP
 sudo apt-get -y install lamp-server^

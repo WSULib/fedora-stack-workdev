@@ -1,16 +1,16 @@
 #!/bin/sh
-echo "Installing Supervisor"
+echo "---- Installing Supervisor ------------------------------------------------"
 
 #### GET ENVARS #################################################
 SHARED_DIR=$1
 
 if [ -f "$SHARED_DIR/config/envvars" ]; then
   . $SHARED_DIR/config/envvars
-  print "found your local envvars file. Using it."
+  printf "found your local envvars file. Using it."
 
 else
   . $SHARED_DIR/config/envvars.default
-  print "found your default envvars file. Using its default values."
+  printf "found your default envvars file. Using its default values."
 
 fi
 #################################################################
