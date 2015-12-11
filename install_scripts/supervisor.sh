@@ -1,5 +1,5 @@
 #!/bin/sh
-echo "Installing Supervisor"
+echo "---- Installing Supervisor ------------------------------------------------"
 
 #### GET ENVARS #################################################
 SHARED_DIR=$1

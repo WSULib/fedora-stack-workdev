@@ -1,5 +1,5 @@
 #!/bin/sh
-echo "Installing Ouroboros"
+echo "---- Installing Ouroboros ------------------------------------------------"
 
 #### GET ENVARS #################################################
 SHARED_DIR=$1

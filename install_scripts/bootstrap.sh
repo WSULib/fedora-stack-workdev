@@ -1,6 +1,5 @@
-###
-# BASICS
-###
+#!/bin/sh
+echo "---- Bootstrapping ------------------------------------------------"
 
 #### GET ENVARS #################################################
 SHARED_DIR=$1
@@ -30,6 +29,9 @@ apt-get -y install git vim
 
 # Wget and curl
 apt-get -y install wget curl
+
+# other handy tools
+apt-get -y install htop tree
 
 # Create Users
 for user in "${USERS_ARRAY[@]}";
