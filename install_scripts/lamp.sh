@@ -30,6 +30,12 @@ service apache2 restart
 # SSL configurations needed.
 # mem_cache (and probably disk_cache) now use cache_disk. I'm not installing fastcgi (which is deprecated for 14.04) until we track down what uses it.
 
+# Copy all needed sensitive files to downloads
+# cp
+
+# set firewall rules
+# sudo iptables-restore < iptables.conf
+
 # Copy ports.conf
 
 # Copy workers.properties
