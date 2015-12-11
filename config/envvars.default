@@ -7,4 +7,6 @@
 OUROBOROS_HOME='/opt/ouroboros'
 
 # SQL
-SQL_PASSWORD = 'mybadpassword'
+SQL_PASSWORD='mybadpassword'
+
+USERS_ARRAY=( "loris":"password" )

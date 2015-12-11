@@ -30,3 +30,15 @@ apt-get -y install git vim
 
 # Wget and curl
 apt-get -y install wget curl
+
+# Create Users
+for user in "${USERS_ARRAY[@]}";
+do
+	echo "Creating user ${user%%:*}"
+	useradd -m -s /bin/bash ${user%%:*}
+	echo ${user%%:*}:${user#*:} | chpasswd
+done
+
+# Make Log files here (for now)
+mkdir /var/log/loris2
+mkdir /var/log/loris2_dev
