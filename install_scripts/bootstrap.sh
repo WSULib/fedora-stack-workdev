@@ -38,7 +38,3 @@ do
 	useradd -m -s /bin/bash ${user%%:*}
 	echo ${user%%:*}:${user#*:} | chpasswd
 done
-
-# Make Log files here (for now)
-mkdir /var/log/loris2
-mkdir /var/log/loris2_dev
