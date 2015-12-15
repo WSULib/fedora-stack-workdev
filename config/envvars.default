@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Contain Environment variables for installs
 #
@@ -12,9 +12,9 @@ SQL_PASSWORD='mybadpassword'
 # FEDORA
 FEDORA_HOST='127.0.0.1'
 FEDORA_MYSQL_USERNAME='fedoraAdmin'
-FEDORA_MYSQL_PASSWORD='cowp00p2012'
+FEDORA_MYSQL_PASSWORD='password1'
 FEDORA_ADMIN_USERNAME='fedoraAdmin'
-FEDORA_ADMIN_PASSWORD='cowp00p2012'
+FEDORA_ADMIN_PASSWORD='password2'
 
 # LINUX USERS
-USERS_ARRAY=( "loris":"password" )
+# USERS_ARRAY=("loris":"password")

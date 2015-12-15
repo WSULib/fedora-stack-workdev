@@ -39,6 +39,8 @@ cp $SHARED_DIR/downloads/apache2/ports.conf /etc/apache2
 # Copy workers.properties
 cp $SHARED_DIR/downloads/apache2/workers.properties /etc/apache2
 
+a2dissite 000-default.conf
+
 # Copy sites-available
 rm /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/defaul-ssl.conf
 cp -R $SHARED_DIR/downloads/apache2/sites-available/* /etc/apache2/sites-available
