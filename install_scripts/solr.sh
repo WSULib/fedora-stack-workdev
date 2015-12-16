@@ -1,5 +1,5 @@
 
-echo "Installing Solr"
+echo "--------------- Installing Solr 4.1 ------------------------------"
 
 SHARED_DIR=$1
 
@@ -32,8 +32,8 @@ cd /tmp
 cp "$DOWNLOAD_DIR/solr-$SOLR_VERSION.tgz" /tmp
 echo "Extracting Solr"
 tar -xzf solr-"$SOLR_VERSION".tgz
-cp -v /tmp/solr-"$SOLR_VERSION"/dist/solr-"$SOLR_VERSION".war /var/lib/tomcat7/webapps/solr.war
-chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/solr.war
+cp -v /tmp/solr-"$SOLR_VERSION"/dist/solr-"$SOLR_VERSION".war /var/lib/tomcat7/webapps/solr4.war
+chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/solr4.war
 
 if [ ! -f "$DOWNLOAD_DIR/commons-logging-1.1.2.jar" ]; then
   echo -n "Downloading commons-logging..."
@@ -48,9 +48,11 @@ cp /tmp/solr-"$SOLR_VERSION"/example/lib/ext/log4j* /usr/share/tomcat7/lib
 
 chown -hR tomcat7:tomcat7 /usr/share/tomcat7/lib
 
+rm -r $SOLR_HOME/collection1
+
 cp -Rv /tmp/solr-"$SOLR_VERSION"/example/solr/* $SOLR_HOME
 
-cp $SHARED_DIR/config/schema.xml $SOLR_HOME/collection1/conf
+cp -R $SHARED_DIR/config/solr/multicore/* $SOLR_HOME/
 
 chown -hR tomcat7:tomcat7 $SOLR_HOME
 

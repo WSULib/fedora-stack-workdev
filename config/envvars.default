@@ -19,4 +19,4 @@ FEDORA_ADMIN_PASSWORD='password2'
 # LINUX USERS
 # USERS_ARRAY=("loris":"password")
 SOLR_VERSION=4.1.0
-SOLR_HOME=/var/lib/tomcat7/webapps/solr
+SOLR_HOME=/var/lib/tomcat7/webapps/solr4
