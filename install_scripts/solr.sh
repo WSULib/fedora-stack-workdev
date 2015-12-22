@@ -34,25 +34,21 @@ echo "Extracting Solr"
 tar -xzf solr-"$SOLR_VERSION".tgz
 cp -v /tmp/solr-"$SOLR_VERSION"/dist/solr-"$SOLR_VERSION".war /var/lib/tomcat7/webapps/solr4.war
 chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/solr4.war
-
-if [ ! -f "$DOWNLOAD_DIR/commons-logging-1.1.2.jar" ]; then
-  echo -n "Downloading commons-logging..."
-  wget -q -O "$DOWNLOAD_DIR/commons-logging-1.1.2.jar" "http://repo1.maven.org/maven2/commons-logging/commons-logging/1.1.2/commons-logging-1.1.2.jar"
-  echo " done"
-fi
-
-cp "$DOWNLOAD_DIR/commons-logging-1.1.2.jar" /usr/share/tomcat7/lib
-
-cp /tmp/solr-"$SOLR_VERSION"/example/lib/ext/slf4j* /usr/share/tomcat7/lib
-cp /tmp/solr-"$SOLR_VERSION"/example/lib/ext/log4j* /usr/share/tomcat7/lib
+service tomcat7 restart
 
 chown -hR tomcat7:tomcat7 /usr/share/tomcat7/lib
 
-rm -r $SOLR_HOME/collection1
+cp $SHARED_DIR/downloads/solr/$SOLR_CATALINA_CONFIG /etc/tomcat7/Catalina/localhost/solr4.xml
 
-cp -Rv /tmp/solr-"$SOLR_VERSION"/example/solr/* $SOLR_HOME
+chown -hR root:tomcat7 /etc/tomcat7/Catalina/localhost
 
-cp -R $SHARED_DIR/config/solr/multicore/* $SOLR_HOME/
+# cp -Rv /tmp/solr-"$SOLR_VERSION"/example/solr/* $SOLR_HOME
+
+# rm -r $SOLR_HOME/collection1
+
+cp -R $SHARED_DIR/config/solr/multicore/ $SOLR_HOME/
+
+cp -R /vagrant/config/solr/lib $SOLR_HOME/
 
 chown -hR tomcat7:tomcat7 $SOLR_HOME
 

@@ -20,3 +20,6 @@ FEDORA_ADMIN_PASSWORD='password2'
 # USERS_ARRAY=("loris":"password")
 SOLR_VERSION=4.1.0
 SOLR_HOME=/var/lib/tomcat7/webapps/solr4
+
+# CHANGE to solr4.xml when in PROD
+SOLR_CATALINA_CONFIG='solr4-temp.xml'
