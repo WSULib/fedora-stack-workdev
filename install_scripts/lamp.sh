@@ -31,7 +31,7 @@ service apache2 restart
 # mem_cache (and probably disk_cache) now use cache_disk. I'm not installing fastcgi (which is deprecated for 14.04) until we track down what uses it.
 
 # set firewall rules
-sudo iptables-restore < /vagrant/downloads/apache/iptables.conf
+sudo iptables-restore < $SHARED_DIR/vagrant/downloads/apache2/iptables.conf
 
 # Copy ports.conf
 cp $SHARED_DIR/downloads/apache2/ports.conf /etc/apache2
@@ -69,7 +69,8 @@ service apache2 reload
 mkdir /var/www/wsuls
 
 # enable all sites
-a2ensite digital.library.wayne.edu.conf
-a2ensite silo.lib.wayne.edu.conf
+# a2ensite digital.library.wayne.edu.conf
+# a2ensite silo.lib.wayne.edu.conf
+a2ensite 000-default.conf
 
 service apache2 reload

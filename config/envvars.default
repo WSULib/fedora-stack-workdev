@@ -12,9 +12,7 @@ SQL_PASSWORD='mybadpassword'
 # FEDORA
 FEDORA_HOST='127.0.0.1'
 FEDORA_MYSQL_USERNAME='fedoraAdmin'
-FEDORA_MYSQL_PASSWORD='password1'
+FEDORA_MYSQL_PASSWORD='fedorapassword'
 FEDORA_ADMIN_USERNAME='fedoraAdmin'
-FEDORA_ADMIN_PASSWORD='password2'
+FEDORA_ADMIN_PASSWORD='fedorapassword'
 
-# LINUX USERS
-# USERS_ARRAY=("loris":"password")
