@@ -23,15 +23,20 @@ sudo apt-get -y install lamp-server^
 
 apt-get -y install libapache2-mod-wsgi libapache2-mod-jk
 
-a2enmod cache cgi cache_disk expires headers proxy proxy_ajp proxy_connect proxy_http reqtimeout rewrite ssl
+# Set servername
+echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/servername.conf
+a2enconf servername
+service apache2 restart
 
+# Install modules
+a2enmod cache cgi cache_disk expires headers proxy proxy_ajp proxy_connect proxy_http reqtimeout rewrite ssl
 service apache2 restart
 
 # SSL configurations needed.
 # mem_cache (and probably disk_cache) now use cache_disk. I'm not installing fastcgi (which is deprecated for 14.04) until we track down what uses it.
 
 # set firewall rules
-sudo iptables-restore < /vagrant/downloads/apache/iptables.conf
+# sudo iptables-restore < /vagrant/downloads/apache2/iptables.conf
 
 # Copy ports.conf
 cp $SHARED_DIR/downloads/apache2/ports.conf /etc/apache2
@@ -40,9 +45,10 @@ cp $SHARED_DIR/downloads/apache2/ports.conf /etc/apache2
 cp $SHARED_DIR/downloads/apache2/workers.properties /etc/apache2
 
 a2dissite 000-default.conf
+service apache2 restart
 
 # Copy sites-available
-rm /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/defaul-ssl.conf
+rm /etc/apache2/sites-available/000-default.conf
 cp -R $SHARED_DIR/downloads/apache2/sites-available/* /etc/apache2/sites-available
 
 # Set IP addr and networking info
@@ -60,11 +66,6 @@ sudo service hostname restart
 # Restart networking
 # sudo service network restart
 
-# Set servername
-echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/servername.conf
-a2enconf servername
-service apache2 reload
-
 # Make wsuls directory
 mkdir /var/www/wsuls
 
@@ -72,4 +73,4 @@ mkdir /var/www/wsuls
 a2ensite digital.library.wayne.edu.conf
 a2ensite silo.lib.wayne.edu.conf
 
-service apache2 reload
+service apache2 restart
