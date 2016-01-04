@@ -6,7 +6,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
   
-  config.vm.hostname = "fedora-stack"
+  config.vm.hostname = "fedora-stack-workdev"
 
   config.vm.box = "ubuntu/trusty64"
 
@@ -24,6 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell", path: "./install_scripts/java.sh", args: shared_dir
   config.vm.provision "shell", path: "./install_scripts/tomcat.sh", args: shared_dir
   config.vm.provision "shell", path: "./install_scripts/fedora.sh", args: shared_dir
+  config.vm.provision "shell", path: "./install_scripts/solr.sh", args: shared_dir
   config.vm.provision "shell", path: "./install_scripts/oaiprovider.sh", args: shared_dir  
   config.vm.provision "shell", path: "./install_scripts/supervisor.sh", args: shared_dir
   config.vm.provision "shell", path: "./install_scripts/ouroboros.sh", args: shared_dir
