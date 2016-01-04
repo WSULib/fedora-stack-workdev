@@ -17,23 +17,14 @@ else
 fi
 #################################################################
 
-
-if [ ! -d $SOLR_HOME ]; then
-  mkdir $SOLR_HOME
-fi
-
-if [ ! -f "$DOWNLOAD_DIR/solr-$SOLR_VERSION.tgz" ]; then
-  echo -n "Downloading Solr..."
-  wget -q -O "$DOWNLOAD_DIR/solr-$SOLR_VERSION.tgz" "http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz"
-  echo " done"
-fi
+print "Downloading Solr"
+wget -q -O "$SHARED_DIR/downloads/solr-$SOLR_VERSION.tgz" "http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz"
 
 cd /tmp
-cp "$DOWNLOAD_DIR/solr-$SOLR_VERSION.tgz" /tmp
+cp $SHARED_DIR/downloads/solr-$SOLR_VERSION.tgz /tmp
 echo "Extracting Solr"
 tar -xzf solr-"$SOLR_VERSION".tgz
 cp -v /tmp/solr-"$SOLR_VERSION"/dist/solr-"$SOLR_VERSION".war /var/lib/tomcat7/webapps/solr4.war
-chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/solr4.war
 service tomcat7 restart
 
 chown -hR tomcat7:tomcat7 /usr/share/tomcat7/lib
@@ -42,17 +33,14 @@ cp $SHARED_DIR/downloads/solr/$SOLR_CATALINA_CONFIG /etc/tomcat7/Catalina/localh
 
 chown -hR root:tomcat7 /etc/tomcat7/Catalina/localhost
 
-# cp -Rv /tmp/solr-"$SOLR_VERSION"/example/solr/* $SOLR_HOME
+cp -Rv /tmp/solr-"$SOLR_VERSION"/example/solr/* $SOLR_HOME
 
-# rm -r $SOLR_HOME/collection1
+rm -r $SOLR_HOME/collection1
 
 cp -R $SHARED_DIR/config/solr/multicore/ $SOLR_HOME/
 
-cp -R /vagrant/config/solr/lib $SOLR_HOME/
+cp -R $SHARED_DIR/config/solr/lib $SOLR_HOME/
 
 chown -hR tomcat7:tomcat7 $SOLR_HOME
-
-touch /var/lib/tomcat7/velocity.log
-chown tomcat7:tomcat7 /var/lib/tomcat7/velocity.log
 
 service tomcat7 restart
