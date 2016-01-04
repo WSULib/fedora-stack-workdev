@@ -43,13 +43,15 @@ apt-get -y install redis-server
 # copy ouroboros's localConfig
 cp $SHARED_DIR/downloads/ouroboros/localConfig.py /opt/ouroboros/localConfig.py
 
-# create MySQL database, users, tables
+# create MySQL database, users, tables, then populate
 echo "creating MySQL database, users, and tables"
 mysql --user=root --password=$SQL_PASSWORD < $SHARED_DIR/downloads/ouroboros/ouroboros_mysql_db_create.sql
 ipython <<EOF
 from console import *
 db.create_all()
 EOF
+mysql --user=root --password=$SQL_PASSWORD < $SHARED_DIR/downloads/ouroboros/ouroboros_mysql_db_populate.sql
+
 
 # copy Ouroboros and Celery conf to supervisor dir, reread, update (automatically starts then)
 cp $SHARED_DIR/config/ouroboros/ouroboros.conf /etc/supervisor/conf.d/
