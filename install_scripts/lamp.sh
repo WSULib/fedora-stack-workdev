@@ -38,6 +38,7 @@ service apache2 restart
 # set firewall rules
 # sudo iptables-restore < /vagrant/downloads/apache2/iptables.conf
 
+
 # Copy ports.conf
 cp $SHARED_DIR/downloads/apache2/ports.conf /etc/apache2
 
@@ -70,7 +71,8 @@ sudo service hostname restart
 mkdir /var/www/wsuls
 
 # enable all sites
-a2ensite digital.library.wayne.edu.conf
-a2ensite silo.lib.wayne.edu.conf
+# a2ensite digital.library.wayne.edu.conf
+# a2ensite silo.lib.wayne.edu.conf
+a2ensite 000-default.conf
 
 service apache2 restart

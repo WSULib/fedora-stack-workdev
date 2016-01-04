@@ -6,29 +6,28 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
   
-  config.vm.hostname = "fedora-stack"
+  config.vm.hostname = "fedora-stack-workdev"
 
   config.vm.box = "ubuntu/trusty64"
 
-  config.vm.network :forwarded_port, guest: 80, host: 8081
-  # using convention of adding "4" to the default port from the VM (e.g. 8080 -> 48080)
-  config.vm.network :forwarded_port, guest: 8080, host: 48080
-
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = 8192
+    vb.memory = 10240
     vb.cpus = 2
+    config.vm.network "private_network", ip: "192.168.42.4"
   end
 
   # sets shared dir that is passed to bootstrap
   shared_dir = "/vagrant"  
 
   config.vm.provision "shell", path: "./install_scripts/bootstrap.sh", args: shared_dir
-  # config.vm.provision "shell", path: "./install_scripts/lamp.sh", args: shared_dir
+  config.vm.provision "shell", path: "./install_scripts/lamp.sh", args: shared_dir
   config.vm.provision "shell", path: "./install_scripts/java.sh", args: shared_dir
   config.vm.provision "shell", path: "./install_scripts/tomcat.sh", args: shared_dir
-  # config.vm.provision "shell", path: "./install_scripts/fedora.sh", args: shared_dir
+  config.vm.provision "shell", path: "./install_scripts/fedora.sh", args: shared_dir
   config.vm.provision "shell", path: "./install_scripts/solr.sh", args: shared_dir
-  # config.vm.provision "shell", path: "./install_scripts/supervisor.sh", args: shared_dir
-  # config.vm.provision "shell", path: "./install_scripts/ouroboros.sh", args: shared_dir
+  config.vm.provision "shell", path: "./install_scripts/oaiprovider.sh", args: shared_dir  
+  config.vm.provision "shell", path: "./install_scripts/supervisor.sh", args: shared_dir
+  config.vm.provision "shell", path: "./install_scripts/ouroboros.sh", args: shared_dir
+  config.vm.provision "shell", path: "./install_scripts/front_end.sh", args: shared_dir
 
 end
