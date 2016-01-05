@@ -31,12 +31,19 @@ cp /tmp/oaiprovider-1.2/oaiprovider.war /var/lib/tomcat7/webapps/
 # restart Tomcat
 service tomcat7 restart
 
+# wait for Tomcat deployment
+while [ ! -d /var/lib/tomcat7/webapps/oaiprovider/WEB-INF/classes ]
+do
+  echo "waiting for Tomcat to deploy..."
+  sleep 2
+done
+
 # move config file to Tomcat
 echo "copying config template and replacing values"
-cp $SHARED_DIR/downloads/oaiprovider/proai.properties /var/lib/tomcat7/webapps/oaiprovider/WEB-INF/classes/
+cp $SHARED_DIR/downloads/oaiprovider/proai.properties /var/lib/tomcat7/webapps/oaiprovider/WEB-INF/classes
 sed -i "s/FEDORA_ADMIN_USERNAME/$FEDORA_ADMIN_USERNAME/g" /var/lib/tomcat7/webapps/oaiprovider/WEB-INF/classes/proai.properties
 sed -i "s/FEDORA_ADMIN_PASSWORD/$FEDORA_ADMIN_PASSWORD/g" /var/lib/tomcat7/webapps/oaiprovider/WEB-INF/classes/proai.properties
-sed -i "s/proai.db.url = jdbc:postgresql:\/\/localhost\/proai/proai.db.url = jdbc:mysql:\/\/localhost\/proai?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true\/g" /var/lib/tomcat7/webapps/oaiprovider/WEB-INF/classes/proai.properties
+sed -i "s/proai.db.url = jdbc:postgresql:\/\/localhost\/proai/proai.db.url = jdbc:mysql:\/\/localhost\/proai?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true/g" /var/lib/tomcat7/webapps/oaiprovider/WEB-INF/classes/proai.properties
 
 # restart Tomcat
 service tomcat7 restart
