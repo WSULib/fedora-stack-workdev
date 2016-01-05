@@ -38,9 +38,9 @@ cp $SHARED_DIR/downloads/solr/$SOLR_CATALINA_CONFIG /etc/tomcat7/Catalina/localh
 
 chown -hR root:tomcat7 /etc/tomcat7/Catalina/localhost
 
-cp -r $SHARED_DIR/config/solr/multicore/ $SOLR_HOME/
+cp -r $SHARED_DIR/config/solr/multicore $SOLR_HOME
 
-cp -r $SHARED_DIR/config/solr/lib/ $SOLR_HOME/
+cp -r $SHARED_DIR/config/solr/lib $SOLR_HOME
 
 chown -hR tomcat7:tomcat7 $SOLR_HOME
 
