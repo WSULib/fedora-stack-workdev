@@ -23,8 +23,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell", path: "./install_scripts/lamp.sh", args: shared_dir
   config.vm.provision "shell", path: "./install_scripts/java.sh", args: shared_dir
   config.vm.provision "shell", path: "./install_scripts/tomcat.sh", args: shared_dir
-  config.vm.provision "shell", path: "./install_scripts/fedora.sh", args: shared_dir
   config.vm.provision "shell", path: "./install_scripts/solr.sh", args: shared_dir
+  config.vm.provision "shell", path: "./install_scripts/fedora.sh", args: shared_dir
   config.vm.provision "shell", path: "./install_scripts/oaiprovider.sh", args: shared_dir  
   config.vm.provision "shell", path: "./install_scripts/supervisor.sh", args: shared_dir
   config.vm.provision "shell", path: "./install_scripts/ouroboros.sh", args: shared_dir
