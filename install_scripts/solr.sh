@@ -25,6 +25,13 @@ tar -xzf solr-"$SOLR_VERSION".tgz
 cp -v /tmp/solr-"$SOLR_VERSION"/dist/solr-"$SOLR_VERSION".war /var/lib/tomcat7/webapps/solr4.war
 service tomcat7 restart
 
+# Waiting for Solr war file to initialize and create the solr4 directory
+while [ ! -d /var/lib/tomcat7/webapps/solr4/WEB-INF/ ]
+do
+ echo "waiting for Solr to deploy..."
+ sleep 2
+done
+
 chown -hR tomcat7:tomcat7 /usr/share/tomcat7/lib
 
 cp $SHARED_DIR/downloads/solr/$SOLR_CATALINA_CONFIG /etc/tomcat7/Catalina/localhost/solr4.xml
