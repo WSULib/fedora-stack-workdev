@@ -52,9 +52,18 @@ db.create_all()
 EOF
 mysql --user=root --password=$SQL_PASSWORD < $SHARED_DIR/downloads/ouroboros/ouroboros_mysql_db_populate.sql
 
+# scaffold (NEEDS ATTEBNTION)
+mkdir /tmp/Ouroboros
+mkdir /tmp/Ouroboros/ingest_workspace
 
 # copy Ouroboros and Celery conf to supervisor dir, reread, update (automatically starts then)
 cp $SHARED_DIR/config/ouroboros/ouroboros.conf /etc/supervisor/conf.d/
 cp $SHARED_DIR/config/ouroboros/celery.conf /etc/supervisor/conf.d/
 supervisorctl reread
 supervisorctl update
+
+######### Extra Dependencies ##########################
+# dependencies for pillow
+sudo apt-get -y install libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk
+# reinstall pillow
+sudo pip install --upgrade pillow
