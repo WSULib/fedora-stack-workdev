@@ -15,13 +15,28 @@ else
 fi
 #################################################################
 
+# install pear, php-dev, and solr depencdencies for front-end
+apt-get -y install php5-dev php-pear libcurl4-gnutls-dev
+sudo pecl -n install solr
+echo "extension=solr.so" >> /etc/php5/apache2/php.ini
+echo "extension=solr.so" > /etc/php5/apache2/conf.d/solr.ini
+echo "extension=solr.so" > /etc/php5/cli/conf.d/solr.ini
+service apache2 restart
+
 # pull in digital collections (mirador included)
 cd /var/www/wsuls
 git clone https://github.com/WSUlib/digitalcollections.git
 
-# copy over configs
+# copy over configs and chown
 cp $SHARED_DIR/downloads/front_end/config* /var/www/wsuls/digitalcollections/config
+chown -R www-data:www-data /var/www/wsuls/digitalcollections
 
 # pull in eTextReader
 git clone https://github.com/WSUlib/eTextReader.git
+chown -R www-data:www-data /var/www/wsuls/eTextReader
+
+# index all documents in Fedora to Solr, specifically to power front-end
+# assumes Fedora, Solr, and Ouroboros are up and operational
+curl "http://$VM_IP:$OUROBOROS_PORT/tasks/updateSolr/purgeAndFullIndex"
+curl "http://$VM_IP:$OUROBOROS_PORT/tasks/updateSolr/replicateStagingToProduction"
 
