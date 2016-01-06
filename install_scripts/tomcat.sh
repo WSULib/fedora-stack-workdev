@@ -39,6 +39,9 @@ chown -R tomcat7:tomcat7 /mnt/ingest
 # Edit tomcat configuration to allow Reverse proxying with Java containers
 perl -i -0777 -pe 's/\s*<!--\s*\n(.*?port="8009".*?)\n\s*-->/\n$1/' /etc/tomcat7/server.xml
 
+# DEBUG
+sed -i 's/JAVA_OPTS="-Djava.awt.headless=true -Xmx128m -XX:+UseConcMarkSweepGC"/JAVA_OPTS="-Djava.awt.headless=true -Xms512m -Xmx1024m -XX:+UseConcMarkSweepGC"/g' /etc/default/tomcat7
+
 # restart tomcat
 service tomcat7 restart
 
