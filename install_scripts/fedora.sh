@@ -43,8 +43,6 @@ cp $SHARED_DIR/downloads/WSUDOR_infrastructure/XACML/*.xml /opt/fedora/data/fedo
 # restart tomcat7
 service tomcat7 restart
 
-# possible that Fedora will need more time here...
-
 # ingest infrastructure objects
 # fedora-ingest f obj1.xml info:fedora/fedora-system:FOXML-1.1 myrepo.com:8443 jane jpw https
 echo "ingesting infrastructural objects to Fedora"

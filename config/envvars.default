@@ -3,8 +3,12 @@
 # Contain Environment variables for installs
 #
 
+# VM IP
+VM_IP='192.168.42.4'
+
 # Ouroboros
 OUROBOROS_HOME='/opt/ouroboros'
+OUROBOROS_PORT='5004'
 
 # SQL
 SQL_PASSWORD='mybadpassword'
