@@ -39,6 +39,12 @@ chown -R tomcat7:tomcat7 /mnt/ingest
 # Edit tomcat configuration to allow Reverse proxying with Java containers
 perl -i -0777 -pe 's/\s*<!--\s*\n(.*?port="8009".*?)\n\s*-->/\n$1/' /etc/tomcat7/server.xml
 
+
+# Up max and perm size memory allocated to Tomcat
+touch /usr/share/tomcat7/bin/setenv.sh
+{ echo "JAVA_OPTS='$JAVA_OPTS -Xms512m -Xmx2048m -XX:MaxPermSize=256M'"; echo "export JAVA_OPTS"; } >> /usr/share/tomcat7/bin/setenv.sh
+chmod +x /usr/share/tomcat7/bin/setenv.sh
+
 # restart tomcat
 service tomcat7 restart
 

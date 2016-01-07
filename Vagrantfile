@@ -30,5 +30,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell", path: "./install_scripts/kakadu.sh", args: shared_dir
   config.vm.provision "shell", path: "./install_scripts/ouroboros.sh", args: shared_dir
   config.vm.provision "shell", path: "./install_scripts/front_end.sh", args: shared_dir
+  config.vm.provision "shell", path: "./install_scripts/loris.sh", args: shared_dir
 
 end
