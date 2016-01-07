@@ -1,6 +1,5 @@
-###
-# BASICS
-###
+#!/bin/sh
+echo "---- Bootstrapping ------------------------------------------------"
 
 #### GET ENVARS #################################################
 SHARED_DIR=$1
@@ -30,3 +29,15 @@ apt-get -y install git vim
 
 # Wget and curl
 apt-get -y install wget curl
+
+# FFmpeg
+sudo add-apt-repository -y ppa:mc3man/trusty-media
+sudo apt-get -y update
+sudo apt-get -y install ffmpeg
+
+# visualization tools
+apt-get -y install htop tree ncdu
+
+# Create Users
+useradd -m -s /bin/bash loris
+echo loris:password | chpasswd

@@ -1,2 +1,1 @@
-# fedora-stack
-Our Fedora Stack
+# fedora-stack-workdev
