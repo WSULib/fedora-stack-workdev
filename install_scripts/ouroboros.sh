@@ -31,7 +31,7 @@ cp inc/php_simple.php /usr/lib/cgi-bin/php_simple.php
 chown www-data:www-data /usr/lib/cgi-bin/php_simple.php
 
 # install system dependencies
-apt-get -y install libxml2-dev libxslt1-dev python-dev python-pip python-mysqldb python-lxml libldap2-dev libsasl2-dev libjpeg-dev
+apt-get -y install libxml2-dev libxslt1-dev python-dev python-pip python-mysqldb python-lxml libldap2-dev libsasl2-dev libjpeg-dev pdftk
 
 # python modules
 pip install -r requirements.txt
