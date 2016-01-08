@@ -27,8 +27,8 @@ git clone https://github.com/WSUlib/ouroboros.git
 cd ouroboros
 
 # copy php script for supporting Datatables
-cp inc/php_simple.php /usr/lib/cgi-bin/php_simple.php
-chown www-data:www-data /usr/lib/cgi-bin/php_simple.php
+cp $SHARED_DIR/downloads/ouroboros/*.php /usr/lib/cgi-bin
+chown -R www-data:www-data /usr/lib/cgi-bin
 
 # install system dependencies
 apt-get -y install libxml2-dev libxslt1-dev python-dev python-pip python-mysqldb python-lxml libldap2-dev libsasl2-dev libjpeg-dev pdftk
@@ -40,8 +40,9 @@ pip install -r requirements.txt
 # redis
 apt-get -y install redis-server
 
-# copy ouroboros's localConfig
+# copy ouroboros's localConfig and replace host info
 cp $SHARED_DIR/downloads/ouroboros/localConfig.py /opt/ouroboros/localConfig.py
+sed -i "s/APP_HOST_PLACEHOLDER/$VM_HOST/g" /opt/ouroboros/localConfig.py
 
 # create MySQL database, users, tables, then populate
 echo "creating MySQL database, users, and tables"
