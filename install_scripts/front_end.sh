@@ -37,6 +37,6 @@ chown -R www-data:www-data /var/www/wsuls/eTextReader
 
 # index all documents in Fedora to Solr, specifically to power front-end
 # assumes Fedora, Solr, and Ouroboros are up and operational
-curl "http://$VM_IP:$OUROBOROS_PORT/tasks/updateSolr/purgeAndFullIndex"
-curl "http://$VM_IP:$OUROBOROS_PORT/tasks/updateSolr/replicateStagingToProduction"
+curl "http://$VM_HOST:$OUROBOROS_PORT/tasks/updateSolr/purgeAndFullIndex"
+curl "http://$VM_HOST:$OUROBOROS_PORT/tasks/updateSolr/replicateStagingToProduction"
 

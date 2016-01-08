@@ -38,7 +38,6 @@ service apache2 restart
 # set firewall rules
 # sudo iptables-restore < /vagrant/downloads/apache2/iptables.conf
 
-
 # Copy ports.conf
 cp $SHARED_DIR/downloads/apache2/ports.conf /etc/apache2
 
@@ -48,9 +47,11 @@ cp $SHARED_DIR/downloads/apache2/workers.properties /etc/apache2
 a2dissite 000-default.conf
 service apache2 restart
 
-# Copy sites-available
+# Copy sites-available and find/replace env variables from envvars
 rm /etc/apache2/sites-available/000-default.conf
 cp -R $SHARED_DIR/downloads/apache2/sites-available/* /etc/apache2/sites-available
+sed -i "s/VM_HOST_PLACEHOLDER/$VM_HOST/g" /etc/apache2/sites-available/000-default.conf
+sed -i "s/VM_NAME_PLACEHOLDER/$VM_NAME/g" /etc/apache2/sites-available/000-default.conf
 
 # Set IP addr and networking info
 # cp /vagrant/downloads/apache2/interfaces /etc/network/interfaces
