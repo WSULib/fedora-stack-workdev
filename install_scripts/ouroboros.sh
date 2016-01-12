@@ -31,7 +31,7 @@ cp $SHARED_DIR/downloads/ouroboros/*.php /usr/lib/cgi-bin
 chown -R www-data:www-data /usr/lib/cgi-bin
 
 # install system dependencies
-apt-get -y install libxml2-dev libxslt1-dev python-dev python-pip python-mysqldb python-lxml libldap2-dev libsasl2-dev libjpeg-dev pdftk
+apt-get -y install libxml2-dev libxslt1-dev python-dev python-pip python-mysqldb python-lxml libldap2-dev libsasl2-dev libjpeg-dev pdftk imagemagick
 
 # python modules
 pip install -r requirements.txt
@@ -56,6 +56,8 @@ mysql --user=root --password=$SQL_PASSWORD < $SHARED_DIR/downloads/ouroboros/our
 # scaffold (NEEDS ATTEBNTION)
 mkdir /tmp/Ouroboros
 mkdir /tmp/Ouroboros/ingest_workspace
+mkdir /var/www/wsuls/Ouroboros
+mkdir /var/www/wsuls/Ouroboros/export/
 
 # copy Ouroboros and Celery conf to supervisor dir, reread, update (automatically starts then)
 cp $SHARED_DIR/config/ouroboros/ouroboros.conf /etc/supervisor/conf.d/
