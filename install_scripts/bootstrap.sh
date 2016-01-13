@@ -41,3 +41,14 @@ apt-get -y install htop tree ncdu
 # Create Users
 useradd -m -s /bin/bash loris
 echo loris:password | chpasswd
+
+# Create archivematica user
+useradd -m -s /bin/bash archivematica
+echo archivematica:archivematica | chpasswd
+
+# create storage directory
+mkdir /assets
+mkdir /assets/aip_storage
+
+# set permissions
+chown -R archivematica /assets
