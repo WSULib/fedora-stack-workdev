@@ -24,6 +24,9 @@ apt-get -y install openssh-server
 # Build tools
 apt-get -y install build-essential
 
+# Python essentials
+apt-get -y install libxml2-dev libxslt1-dev python-dev python-setuptools
+
 # Git vim
 apt-get -y install git vim
 
@@ -41,3 +44,14 @@ apt-get -y install htop tree ncdu
 # Create Users
 useradd -m -s /bin/bash loris
 echo loris:password | chpasswd
+
+# Create archivematica user
+useradd -m -s /bin/bash archivematica
+echo archivematica:archivematica | chpasswd
+
+# create storage directory
+mkdir /assets
+mkdir /assets/aip_storage
+
+# set permissions
+chown -R archivematica /assets

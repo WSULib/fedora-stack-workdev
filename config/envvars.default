@@ -4,7 +4,8 @@
 #
 
 # VM IP
-VM_IP='192.168.42.4'
+VM_HOST='192.168.42.4'
+VM_NAME='fedora-stack-workdev'
 
 # Ouroboros
 OUROBOROS_HOME='/opt/ouroboros'
