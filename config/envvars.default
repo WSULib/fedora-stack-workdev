@@ -27,3 +27,5 @@ SOLR_HOME=/var/lib/tomcat7/webapps/solr4
 # CHANGE to solr4.xml when in PROD
 SOLR_CATALINA_CONFIG='solr4-temp.xml'
 
+#server hosts
+ARCHIVEMATICA_HOST='192.168.42.3'
