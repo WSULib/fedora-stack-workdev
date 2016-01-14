@@ -18,6 +18,13 @@ fi
 # copy apache / info file
 cp $SHARED_DIR/config/cleanup/index.php /var/www/wsuls/
 
+# eulxml
+cd /tmp
+cp $SHARED_DIR/downloads/cleanup/eulxml-0.22.1.tar.gz /tmp
+tar -xvf eulxml-0.22.1.tar.gz
+cd eulxml-0.22.1
+python setup.py install
+
 # ingest test bags
 cd /opt/ouroboros/
 cp $SHARED_DIR/downloads/ouroboros/ingest_bags.py /opt/ouroboros/
