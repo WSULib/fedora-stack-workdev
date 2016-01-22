@@ -38,3 +38,8 @@ sudo python /opt/ouroboros/ingest_bags.py
 sleep 15
 curl http://localhost:5004/tasks/updateSolr/replicateStagingToProduction
 sudo rm /opt/ouroboros/ingest_bags.py
+
+# copy objectrs from silo (slow, and not accessible by most)
+# bash $SHARED_DIR/downloads/ouroboros/copy_objects.sh
+# curl http://localhost:5004/tasks/updateSolr/fullIndex
+# curl http://localhost:5004/tasks/updateSolr/replicateStagingToProduction
