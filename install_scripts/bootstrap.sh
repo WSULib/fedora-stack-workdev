@@ -54,9 +54,5 @@ echo loris:password | chpasswd
 useradd -m -s /bin/bash archivematica
 echo archivematica:archivematica | chpasswd
 
-# create storage directory
-mkdir /assets
-mkdir /assets/aip_storage
-
-# set permissions
-chown -R archivematica /assets
+# install sshfs
+apt-get -y install sshfs
