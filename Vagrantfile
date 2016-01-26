@@ -15,10 +15,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.cpus = 2
     config.vm.network "private_network", ip: "192.168.42.4"
     config.vm.network :forwarded_port, guest: 80, host: 4567
+
   end
 
   # sets shared dir that is passed to bootstrap
   shared_dir = "/vagrant"    
+
+  # sets shared dir to /tmp on host
+  config.vm.synced_folder "/tmp", "/tmp/host"
+
   config.vm.provision "shell", path: "./install_scripts/bootstrap.sh", args: shared_dir  
   config.vm.provision "shell", path: "./install_scripts/lamp.sh", args: shared_dir
   config.vm.provision "shell", path: "./install_scripts/java.sh", args: shared_dir

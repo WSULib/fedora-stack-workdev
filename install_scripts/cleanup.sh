@@ -35,6 +35,10 @@ echo "running ingest of demo objects from /downloads/WSUDOR_object_samples"
 cd /opt/ouroboros/
 cp $SHARED_DIR/downloads/ouroboros/ingest_bags.py /opt/ouroboros/
 sudo python /opt/ouroboros/ingest_bags.py
-sleep 15
-curl http://localhost:5004/tasks/updateSolr/replicateStagingToProduction
 sudo rm /opt/ouroboros/ingest_bags.py
+
+# index all documents in Fedora to Solr, specifically to power front-end
+# assumes Fedora, Solr, and Ouroboros are up and operational
+curl "http://$VM_HOST:$OUROBOROS_PORT/tasks/updateSolr/purgeAndFullIndex"
+curl "http://$VM_HOST:$OUROBOROS_PORT/tasks/updateSolr/replicateStagingToProduction"
+
