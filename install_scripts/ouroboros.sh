@@ -65,9 +65,11 @@ cp $SHARED_DIR/config/ouroboros/celery.conf /etc/supervisor/conf.d/
 supervisorctl reread
 supervisorctl update
 
-# overwrite eulfedora with newer version (fedora-stack-workdev only)
-cd $SHARED_DIR/downloads/eulfedora
-git checkout develop
+# overwrite pip installed eulfedora with WSU fork
+cd /opt
+git clone https://github.com/WSULib/eulfedora.git
+cd eulfedora
+git checkout master
 python setup.py install
 
 ######### Extra Dependencies ##########################
