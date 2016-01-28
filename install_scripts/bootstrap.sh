@@ -41,6 +41,11 @@ sudo apt-get -y install ffmpeg
 # visualization tools
 apt-get -y install htop tree ncdu
 
+# setup tailing
+apt-get -y install multitail
+echo "multitail /var/log/apache2/$VM_NAME-access.log /var/log/apache2/$VM_NAME-error.log /var/log/tomcat7/catalina.out /var/log/ouroboros.err.log /var/log/celery.err.log /opt/fedora/server/logs/fedora.log" > /usr/bin/alltails
+chmod +x /usr/bin/alltails
+
 # Create Users
 useradd -m -s /bin/bash loris
 echo loris:password | chpasswd
@@ -49,9 +54,5 @@ echo loris:password | chpasswd
 useradd -m -s /bin/bash archivematica
 echo archivematica:archivematica | chpasswd
 
-# create storage directory
-mkdir /assets
-mkdir /assets/aip_storage
-
-# set permissions
-chown -R archivematica /assets
+# install sshfs
+apt-get -y install sshfs
