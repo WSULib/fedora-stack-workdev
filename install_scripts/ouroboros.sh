@@ -69,8 +69,13 @@ supervisorctl update
 cd /opt
 git clone https://github.com/WSULib/eulfedora.git
 cd eulfedora
-git checkout master
+# building and installing from 'develop' branch for development
+git checkout develop
 python setup.py install
+chown -R vagrant /opt/eulfedora
+
+# finally, create symlink to repocopy
+ln -s /opt/eulfedora/scripts/repo-cp /opt/ouroboros/inc/repocp.py
 
 ######### Extra Dependencies ##########################
 # dependencies for pillow
