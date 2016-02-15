@@ -18,15 +18,6 @@ fi
 # copy apache / info file
 cp $SHARED_DIR/config/cleanup/index.php /var/www/wsuls/
 
-# eulxml
-cd /tmp
-cp $SHARED_DIR/downloads/cleanup/eulxml-0.22.1.tar.gz /tmp
-tar -xvf eulxml-0.22.1.tar.gz
-cd eulxml-0.22.1
-python setup.py install
-# remove bad requests from eulxml install
-rm -r /usr/lib/python2.7/dist-packages/requests*
-
 # python progressbar for repo-cp
 pip install progressbar
 
@@ -40,5 +31,4 @@ sudo rm /opt/ouroboros/ingest_bags.py
 # index all documents in Fedora to Solr, specifically to power front-end
 # assumes Fedora, Solr, and Ouroboros are up and operational
 curl "http://$VM_HOST:$OUROBOROS_PORT/tasks/updateSolr/purgeAndFullIndex"
-curl "http://$VM_HOST:$OUROBOROS_PORT/tasks/updateSolr/replicateStagingToProduction"
 
