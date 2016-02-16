@@ -19,7 +19,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # sets shared dir that is passed to bootstrap
-  shared_dir = "/vagrant"    
+  shared_dir = "/vagrant"
 
   # sets shared dir to /tmp on host
   config.vm.synced_folder "/tmp", "/tmp/host"
