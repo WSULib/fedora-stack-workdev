@@ -70,7 +70,7 @@ cd /opt
 git clone https://github.com/WSULib/eulfedora.git
 cd eulfedora
 # building and installing from 'develop' branch for development
-git checkout develop
+git checkout wsudor_develop
 pip install -e .
 python setup.py install
 chown -R vagrant /opt/eulfedora
