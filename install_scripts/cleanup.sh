@@ -32,3 +32,7 @@ sudo rm /opt/ouroboros/ingest_bags.py
 # assumes Fedora, Solr, and Ouroboros are up and operational
 curl "http://$VM_HOST:$OUROBOROS_PORT/tasks/updateSolr/purgeAndFullIndex"
 
+
+# Cleanup unneeded packages
+sudo apt-get -y autoremove
+

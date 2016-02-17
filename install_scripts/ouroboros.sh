@@ -23,7 +23,7 @@ fi
 cd /opt
 
 # clone repository
-git clone https://github.com/WSUlib/ouroboros.git
+git clone https://github.com/WSULib/ouroboros.git
 cd ouroboros
 
 # copy php script for supporting Datatables
@@ -31,7 +31,7 @@ cp $SHARED_DIR/downloads/ouroboros/*.php /usr/lib/cgi-bin
 chown -R www-data:www-data /usr/lib/cgi-bin
 
 # install system dependencies
-apt-get -y install libxml2-dev libxslt1-dev python-dev python-pip python-mysqldb python-lxml libldap2-dev libsasl2-dev libjpeg-dev pdftk imagemagick
+apt-get -y install libxml2-dev libxslt1-dev python-dev python-mysqldb python-lxml libldap2-dev libsasl2-dev libjpeg-dev pdftk imagemagick
 
 # python modules
 pip install -r requirements.txt
