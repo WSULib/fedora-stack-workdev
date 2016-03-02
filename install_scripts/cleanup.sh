@@ -18,9 +18,6 @@ fi
 # copy apache / info file
 cp $SHARED_DIR/config/cleanup/index.php /var/www/wsuls/
 
-# python progressbar for repo-cp
-pip install progressbar
-
 # ingest test bags
 echo "running ingest of demo objects from /downloads/WSUDOR_object_samples"
 cd /opt/ouroboros/
