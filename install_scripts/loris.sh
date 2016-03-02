@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 echo "---- Installing Loris (Image Server) ------------------------------------------------"
 
 #### GET ENVARS #################################################
@@ -15,12 +15,18 @@ else
 fi
 #################################################################
 
+# turn on virtualenv
+WORKON_HOME=/usr/local/lib/venvs
+source /usr/local/bin/virtualenvwrapper.sh
+
+mkvirtualenv loris
+workon loris
 # dependencies
 sudo apt-get -y install python-setuptools
 
 printf "\n" | sudo pip uninstall PIL
 printf "y \n" | sudo pip uninstall Pillow
-sudo apt-get purge python-imaging
+sudo apt-get -y purge python-imaging
 
 sudo apt-get -y install libjpeg-turbo8-dev libfreetype6-dev zlib1g-dev \
 liblcms2-dev liblcms-utils libtiff5-dev python-dev libwebp-dev apache2 \
@@ -42,8 +48,18 @@ _expand --libkdu=/usr/local/lib  --info-cache=/var/cache/loris2 --image-cache=/v
 echo "copying conf file"
 cp $SHARED_DIR/downloads/loris/loris2.conf /etc/loris2/
 
+# copy custom wsgi file into www
+cp $SHARED_DIR/downloads/loris/loris2.wsgi /opt/loris2/loris2.wsgi
+chown loris:loris /opt/loris2/loris2.wsgi
+chmod 755 /opt/loris2/loris2.wsgi
+
 # change ownership
 chown -R loris:loris /var/log/loris2
+
+# stop virtualenv -- this should hopefully then indicate if apache is succesfully loading the loris
+# virtualenv on itself
+sudo chown -R :admin /usr/local/lib/venvs/loris
+deactivate
 
 # restart apache2
 echo "restarting apache"
