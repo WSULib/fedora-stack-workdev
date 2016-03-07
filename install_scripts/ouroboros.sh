@@ -54,6 +54,21 @@ apt-get -y install redis-server
 cp $SHARED_DIR/downloads/ouroboros/localConfig.py /opt/ouroboros/localConfig.py
 sed -i "s/APP_HOST_PLACEHOLDER/$VM_HOST/g" /opt/ouroboros/localConfig.py
 
+
+
+cd /opt
+# install eulfedora with WSU fork
+git clone https://github.com/WSULib/eulfedora.git
+
+cd eulfedora
+workon ouroboros
+python setup.py install
+pip install -e .
+# chown -R vagrant /opt/eulfedora
+# chown -R ouroboros /opt/eulfedora
+
+# Finish Ouroboros configuration
+cd /opt/ouroboros
 # create MySQL database, users, tables, then populate
 echo "creating MySQL database, users, and tables"
 mysql --user=root --password=$SQL_PASSWORD < $SHARED_DIR/downloads/ouroboros/ouroboros_mysql_db_create.sql
@@ -68,21 +83,6 @@ mkdir /tmp/Ouroboros
 mkdir /tmp/Ouroboros/ingest_workspace
 mkdir /var/www/wsuls/Ouroboros
 mkdir /var/www/wsuls/Ouroboros/export/
-
-################################## eulfedora important ###################
-### eulfedora MUST be installed before Ouroboros is started 
-cd /opt
-# install eulfedora with WSU fork
-git clone https://github.com/WSULib/eulfedora.git
-
-cd eulfedora
-workon ouroboros
-python setup.py install
-pip install -e .
-# chown -R vagrant /opt/eulfedora
-# chown -R ouroboros /opt/eulfedora
-###########################################################################
-
 
 # copy Ouroboros and Celery conf to supervisor dir, reread, update (automatically starts then)
 cp $SHARED_DIR/config/ouroboros/ouroboros.conf /etc/supervisor/conf.d/
