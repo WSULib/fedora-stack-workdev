@@ -18,17 +18,25 @@ fi
 # copy apache / info file
 cp $SHARED_DIR/config/cleanup/index.php /var/www/wsuls/
 
-# python progressbar for repo-cp
-pip install progressbar
-
 # ingest test bags
 echo "running ingest of demo objects from /downloads/WSUDOR_object_samples"
 cd /opt/ouroboros/
 cp $SHARED_DIR/downloads/ouroboros/ingest_bags.py /opt/ouroboros/
+
+# turn on virtualenv
+WORKON_HOME=/usr/local/lib/venvs
+source /usr/local/bin/virtualenvwrapper.sh
+workon ouroboros
+
 sudo python /opt/ouroboros/ingest_bags.py
 sudo rm /opt/ouroboros/ingest_bags.py
 
 # index all documents in Fedora to Solr, specifically to power front-end
 # assumes Fedora, Solr, and Ouroboros are up and operational
 curl "http://$VM_HOST:$OUROBOROS_PORT/tasks/updateSolr/purgeAndFullIndex"
+
+deactivate
+
+# Cleanup unneeded packages
+sudo apt-get -y autoremove
 
