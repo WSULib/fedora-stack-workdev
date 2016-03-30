@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 echo "---- Cleanup ------------------------------------------------"
 
 #### GET ENVARS #################################################
@@ -33,7 +33,7 @@ sudo rm /opt/ouroboros/ingest_bags.py
 
 # index all documents in Fedora to Solr, specifically to power front-end
 # assumes Fedora, Solr, and Ouroboros are up and operational
-curl "http://$VM_HOST:$OUROBOROS_PORT/tasks/updateSolr/purgeAndFullIndex"
+curl --data "choice=confirm&confirm_string=confirm" "http://$VM_HOST:$OUROBOROS_PORT/tasks/updateSolr/purgeAndFullIndex"
 
 deactivate
 

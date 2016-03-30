@@ -32,6 +32,9 @@ cd /opt
 git clone https://github.com/WSULib/ouroboros.git
 cd ouroboros
 
+# fire ouroboros_assets
+git submodule update --init --recursive
+
 # copy php script for supporting Datatables
 cp $SHARED_DIR/downloads/ouroboros/*.php /usr/lib/cgi-bin
 chown -R www-data:www-data /usr/lib/cgi-bin
@@ -80,6 +83,7 @@ chown -R ouroboros:admin /opt/ouroboros
 
 mkdir /tmp/Ouroboros
 mkdir /tmp/Ouroboros/ingest_workspace
+mkdir /tmp/Ouroboros/ingest_jobs
 chown -R ouroboros:admin /tmp/Ouroboros/
 
 mkdir /var/www/wsuls/Ouroboros
@@ -88,6 +92,9 @@ chown -R ouroboros:admin /var/www/wsuls/Ouroboros
 
 mkdir /var/run/ouroboros
 chown -R ouroboros:admin /var/run/ouroboros
+
+# copy rc.local
+cp $SHARED_DIR/downloads/ouroboros/rc.local /etc
 
 # copy Ouroboros and Celery conf to supervisor dir, reread, update (automatically starts then)
 cp $SHARED_DIR/config/ouroboros/ouroboros.conf /etc/supervisor/conf.d/
