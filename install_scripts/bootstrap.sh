@@ -93,7 +93,7 @@ echo archivematica:archivematica | chpasswd
 
 # Create ouroboros user
 useradd -m -s /bin/bash ouroboros
-usermod -a -G admin ouroboros
+usermod -g admin ouroboros
 echo ouroboros:ouroboros | chpasswd
 
 # install sshfs
