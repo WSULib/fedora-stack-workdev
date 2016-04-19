@@ -2,6 +2,7 @@
 ###################
 .vagrant/
 downloads/*
+downloads
 
 # Compiled source #
 ###################
