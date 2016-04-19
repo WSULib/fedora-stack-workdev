@@ -32,6 +32,9 @@ cd /opt
 git clone https://github.com/WSULib/ouroboros.git
 cd ouroboros
 
+# DEV
+git checkout userAuth
+
 # fire ouroboros_assets
 git submodule update --init --recursive
 
@@ -76,7 +79,6 @@ ipython <<EOF
 from console import *
 db.create_all()
 EOF
-mysql --user=root --password=$SQL_PASSWORD < $SHARED_DIR/downloads/ouroboros/ouroboros_mysql_db_populate.sql
 
 # scaffold
 chown -R ouroboros:admin /opt/ouroboros
