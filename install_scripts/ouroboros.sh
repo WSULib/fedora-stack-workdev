@@ -26,9 +26,8 @@ source /usr/local/bin/virtualenvwrapper.sh
 mkvirtualenv ouroboros
 workon ouroboros
 
-# change to dir
+# clone Ouroboros repository
 cd /opt
-# clone repository
 git clone https://github.com/WSULib/ouroboros.git
 cd ouroboros
 
@@ -69,6 +68,14 @@ workon ouroboros
 python setup.py install
 pip install -e .
 chown -R ouroboros:admin /opt/eulfedora
+
+# install artecfactual mets-reader-writer library (metsrw)
+cd /opt
+git clone https://github.com/WSULib/mets-reader-writer.git
+chown -R ouroboros:admin /opt/mets-reader-writer
+cd mets-reader-writer
+workon ouroboros
+python setup.py install
 
 # Finish Ouroboros configuration
 cd /opt/ouroboros
